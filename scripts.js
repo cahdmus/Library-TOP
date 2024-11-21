@@ -25,7 +25,26 @@ function createCard(book) {
     }
 
     function changeStatus(book) {
-
+        switch (book.status) {
+            case 'read':
+                card.statusBar.classList.remove("read");
+                card.statusBar.classList.add("unread");
+                card.statusText.textContent = "unread";
+                book.status = "unread";
+                break
+            case 'unread':
+                card.statusBar.classList.remove("unread");
+                card.statusBar.classList.add("reading");
+                card.statusText.textContent = "reading";
+                book.status = "reading";
+                break
+            case 'reading':
+                card.statusBar.classList.remove("reading");
+                card.statusBar.classList.add("read");
+                card.statusText.textContent = "read";
+                book.status = "read";
+                break
+        }
     }
 
     function isBookRead(status) {
@@ -62,6 +81,7 @@ function createCard(book) {
 
     card.bookDisplay.classList.add("bookDisplay");
     card.statusBar.classList.add("status");
+    card.statusBar.setAttribute("title", "change status");
     isBookRead(book.status);
     card.bookContent.classList.add("bookContent");
     card.closebtn.setAttribute("type", "button");
@@ -88,7 +108,9 @@ function createCard(book) {
     })
 
     card.statusBar.addEventListener("click", () => {
-        console.log(book);
+        console.log(book.status);
+        changeStatus(book);
+        console.log(book.status);
     })
 
     return card;
@@ -97,6 +119,7 @@ function createCard(book) {
 myLibrary.forEach(book => {
     createCard(book);
 });
+
 
 // Add book
 function addBookToLibrary() {
@@ -223,7 +246,6 @@ function addBookToLibrary() {
     form.fieldsetInput.appendChild(form.unreadLabel);
     form.statusDiv.appendChild(form.fieldsetInput);
     form.fieldset.appendChild(form.statusDiv);
-
 
     form.form.appendChild(form.fieldset);
     form.sendForm.textContent = "Add Book";
