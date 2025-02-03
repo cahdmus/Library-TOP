@@ -1,20 +1,22 @@
-// Sort books
+// Add and sort books
+class Book {
+    constructor(title, author, year, status) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.status = status;
+    }
+    get info() {
+        return `${this.title} by ${this.author}, came out in ${this.year} pages, ${this.status}`;
+    }
+}
+
 const myLibrary = [];
 myLibrary.push(new Book('The Hobbit', 'J.R.R. Tolkien', '1937', 'read'));
 myLibrary.push(new Book('Project Hail Mary', 'Andy Weir', '2021', 'reading'));
 myLibrary.push(new Book('Jane Eyre', 'Charlotte Brontë', '1847', 'read'));
 myLibrary.push(new Book('The Picture of Dorian Gray', 'Oscar Wilde', '1890', 'unread'));
-
-function Book(title, author, year, status) {
-    this.title = title;
-    this.author = author;
-    this.year = year;
-    this.status = status;
-
-    this.info = function () {
-        return `${this.title} by ${this.author}, came out in ${this.year} pages, ${this.status}`;
-    }
-}
+myLibrary.push(new Book('The Night Visitors', 'Jenn Ashworth, Richard V. Hirst', '2017', 'read'));
 
 
 // Display books
